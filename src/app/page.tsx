@@ -1,103 +1,250 @@
-import Image from "next/image";
+"use client";
+import PqEscolher from "@/components/pqEscolher";
+import ReservaSection from "@/components/ReservaSection";
+import FooterInfo from "@/components/FooterInfo";
+
+import { motion } from "framer-motion";
+import {
+  MapPin,
+  Phone,
+  Users,
+  BedDouble,
+  Bath,
+  Waves,
+  Sun,
+  TreePalm,
+  Heart,
+} from "lucide-react";
+
+const properties = [
+  {
+    id: 1,
+    name: "Casa em Condomínio",
+    location: "Praia da Mucugê",
+    dispo: "Disponível",
+    bedrooms: 4,
+    bathrooms: 3,
+    guests: 10,
+    image: "/images/casa1.jpg",
+  },
+  {
+    id: 2,
+    name: "Apartamento Vista Mar",
+    location: "300m da Praia",
+    dispo: "Disponível",
+    bedrooms: 2,
+    bathrooms: 3,
+    guests: 8,
+    image: "/images/casa2.jpg",
+  },
+  {
+    id: 3,
+    name: "Casa Tropical",
+    location: "Proximo a Pitinga",
+    dispo: "Disponível",
+    bedrooms: 4,
+    bathrooms: 2,
+    guests: 12,
+    image: "/images/casa3.jpg",
+  },
+  {
+    id: 4,
+    name: "Casa Tropical",
+    location: "10 min do Centro",
+    dispo: "Disponível",
+    bedrooms: 2,
+    bathrooms: 2,
+    guests: 6,
+    image: "/images/casa4.jpg",
+  },
+  {
+    id: 5,
+    name: "Casa em Condomínio",
+    location: "Proximo a Pitinga",
+    dispo: "Disponível",
+    bedrooms: 4,
+    bathrooms: 4,
+    guests: 12,
+    image: "/images/casa5.jpg",
+  },
+  {
+    id: 6,
+    name: "Casa Tropical",
+    location: "Estrada da Balsa",
+    dispo: "Disponível",
+    bedrooms: 6,
+    bathrooms: 6,
+    guests: 12,
+    image: "/images/casa6.jpg",
+  },
+];
+
+const reasons = [
+  {
+    id: 1,
+    icon: <Waves size={28} />,
+    title: "Praias Paradisíacas",
+    description:
+      "Águas cristalinas e areias brancas em um dos destinos mais bonitos da Bahia",
+  },
+  {
+    id: 2,
+    icon: <TreePalm size={28} />,
+    title: "Natureza Exuberante",
+    description:
+      "Coqueirais, falésias coloridas e Mata Atlântica preservada",
+  },
+  {
+    id: 3,
+    icon: <Sun size={28} />,
+    title: "Clima Perfeito",
+    description: "Sol o ano todo com temperatura média de 26°C",
+  },
+  {
+    id: 4,
+    icon: <Heart size={28} />,
+    title: "Charme & Conforto",
+    description:
+      "Infraestrutura completa mantendo o charme de vila praiana",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="bg-white text-gray-900">
+      {/* HERO SECTION */}
+      <section
+        className="relative h-screen bg-cover bg-center flex items-center justify-center text-white"
+        style={{
+          backgroundImage: "url('/images/arraial.jpg')",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="relative z-10 text-center px-6 max-w-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 150 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="flex items-center justify-center gap-2 text-gray-200 mb-3">
+              <MapPin size={18} />
+              <span className="text-lg">Arraial d'Ajuda, Bahia</span>
+            </div>
+
+            <h1 className="text-5xl md:text-6xl font-serif font-bold leading-tight">
+              Seu Paraíso <span className="text-red-700">de Temporada</span>
+            </h1>
+
+            <p className="text-gray-200 mt-5 text-lg leading-relaxed">
+              Descubra imóveis exclusivos na Costa do Descobrimento. <br />
+              Conforto, elegância e a natureza da Bahia ao seu alcance.
+            </p>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+              <a
+                href="#propriedades"
+                className="bg-red-700 hover:bg-red-800 text-gray-300 font-semibold py-3 px-6 rounded-lg transition"
+              >
+                Ver Propriedades
+              </a>
+
+              <a
+                href="https://wa.me/557399699318?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-white hover:bg-white hover:text-black font-semibold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition"
+              >
+                <Phone size={18} /> Entre em Contato
+              </a>
+            </div>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* SEÇÃO DE IMÓVEIS */}
+      <section id="propriedades" className="py-20 px-6 bg-gray-50">
+        <div className="max-w-6xl mx-auto text-center mb-12">
+          <p className="text-red-700 font-semibold uppercase tracking-wide">
+            Propriedades em Destaque
+          </p>
+          <h2 className="text-4xl font-bold text-gray-900 mt-2">
+            Imóveis Exclusivos
+          </h2>
+          <p className="text-gray-600 mt-3">
+            Selecionamos as melhores opções para suas férias dos sonhos em
+            Arraial d'Ajuda
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {properties.map((p) => (
+            <motion.div
+              key={p.id}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-2xl transition"
+            >
+              <div className="relative">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="w-full h-56 object-cover"
+                />
+                <div className="absolute top-3 right-3 bg-red-700 text-white text-sm font-semibold py-1 px-3 rounded-full">
+                  {p.dispo}
+                </div>
+              </div>
+
+              <div className="p-6">
+                <div className="flex items-center gap-2 text-gray-500 text-sm mb-2">
+                  <MapPin size={16} />
+                  <span>{p.location}</span>
+                </div>
+
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  {p.name}
+                </h3>
+
+                <div className="flex items-center gap-4 text-gray-600 text-sm mb-5">
+                  <div className="flex items-center gap-1">
+                    <BedDouble size={16} /> {p.bedrooms} quartos
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Bath size={16} /> {p.bathrooms} banheiros
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Users size={16} /> {p.guests} hóspedes
+                  </div>
+                </div>
+
+                <a
+                  href={`https://wa.me/557399699318?text=Olá!%20Tenho%20interesse%20na%20${encodeURIComponent(
+                    p.name
+                  )}.%20Poderia%20me%20dar%20mais%20detalhes?`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-blue-900 hover:bg-blue-950 text-white text-center py-2.5 rounded-lg font-semibold transition"
+                >
+                  Ver Detalhes
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* SEÇÃO - POR QUE ESCOLHER */}
+      <PqEscolher />
+
+      {/* SEÇÃO - RESERVA */}
+      <ReservaSection />
+
+      {/* SEÇÃO - FOOTER */}
+      <FooterInfo />
+
+    </main>
   );
 }
